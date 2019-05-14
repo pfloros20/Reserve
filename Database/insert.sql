@@ -27,48 +27,6 @@ INSERT INTO `STORE` VALUES
 INSERT INTO `STORE`(ID,OWNER_ID,CAPACITY,CURRENT_AVAILABILITY,DESCRIPTION,TYPE) VALUES
 (null,1,20,8,'This is the second best store in Patras','RESTAURANT');
 
-
-INSERT INTO `RESERVATION` VALUES
-(null,1,3,'ACCEPTED'),
-(null,2,1,'ACCEPTED'),
-(null,3,3,'DENIED'),
-(null,4,4,'ACCEPTED'),
-(null,5,5,'ACCEPTED'),
-(null,1,4,'DENIED');
-
-INSERT INTO `RES_TABLES` VALUES
-(null,1,17),
-(null,2,2),
-(null,3,17),
-(null,4,30),
-(null,5,45),
-(null,6,30);
-
-INSERT INTO `VISITED` VALUES
-(null,1,1),
-(null,3,1),
-(null,3,2),
-(null,3,3),
-(null,4,4),
-(null,3,5);
-
-INSERT INTO `EVENT` VALUES
-(null,1,'2019-5-10','2019-5-16','2nd anniversary'),
-(null,3,'2019-7-1','2019-7-7','5th anniversary'),
-(null,4,'2019-1-1','2019-1-2','3rd anniversary'),
-(null,5,'2019-5-13','2019-5-13','mother birthday');
-
-INSERT INTO `REVIEW` VALUES
-(null,1,1,4,''),
-(null,2,1,5,'great store'),
-(null,3,5,1,'the worst store ever'),
-(null,4,1,4,'nice store'),
-(null,1,5,1,'rly bad shit');
-
-INSERT INTO `REPORT` VALUES
-(null,2,1,5,'he should not speak like that','HATE_SPEECH'),
-(null,2,3,3,'lies','OTHER');
-
 INSERT INTO `TABLE` VALUES
 (null,1,4,'FREE'),
 (null,1,4,'TAKEN'),
@@ -119,3 +77,46 @@ INSERT INTO `TABLE` VALUES
 (null,5,2,'BOOKED'),
 (null,5,2,'BOOKED'),
 (null,5,2,'TAKEN');
+
+INSERT INTO `RESERVATION` VALUES
+(null,1,3,'ACCEPTED'),
+(null,2,1,'ACCEPTED'),
+(null,3,3,'DENIED'),
+(null,4,4,'ACCEPTED'),
+(null,5,5,'ACCEPTED'),
+(null,1,4,'DENIED');
+
+INSERT INTO `RES_TABLES` VALUES
+(null,1,17),
+(null,2,2),
+(null,3,17),
+(null,4,30),
+(null,5,45),
+(null,6,30);
+
+INSERT INTO `VISITED` VALUES
+(null,1,1),
+(null,3,1),
+(null,3,2),
+(null,3,3),
+(null,4,4),
+(null,3,5);
+
+INSERT INTO `EVENT` VALUES
+(null,1,'2019-5-10','2019-5-16','2nd anniversary'),
+(null,3,'2019-7-1','2019-7-7','5th anniversary'),
+(null,4,'2019-1-1','2019-1-2','3rd anniversary'),
+(null,5,'2019-5-13','2019-5-13','mother birthday');
+
+INSERT INTO `REVIEW` VALUES
+(null,1,1,4,''),
+(null,2,1,5,'great store'),
+(null,3,5,1,'the worst store ever'),
+(null,4,1,4,'nice store'),
+(null,1,5,1,'rly bad shit');
+
+INSERT INTO `REPORT` VALUES
+(null,2,1,5,'he should not speak like that','HATE_SPEECH'),
+(null,2,3,3,'lies','OTHER');
+
+
