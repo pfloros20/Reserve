@@ -18,11 +18,12 @@ INSERT INTO `USER` VALUES
 (null,'marina','asd',10.5,6.0),
 (null,'Aristidis','ll21',7.0,3.0);
 
-INSERT INTO `STORE` VALUES
-(null,1,42,10,'This is the best store in Patras',TRUE,'RESTAURANT'),
-(null,2,70,30,'This is the greatest store in Patras',TRUE,'RESTAURANT'),
-(null,3,55,24,'This is the most popular store in Patras',TRUE,'COFFEE SHOP'),
-(null,4,50,30,'This is one of the best stores in Patras',TRUE,'PIZZA SHOP');
+INSERT INTO `STORE`(ID, STORE_NAME, OWNER_ID, CAPACITY, CURRENT_AVAILABILITY, DESCRIPTION, VISIBLE, TYPE) VALUES
+(null,'STORE0',1,42,10,'This is the best store in Patras',TRUE,'RESTAURANT'),
+(null,'STORE1',2,70,30,'This is the greatest store in Patras',TRUE,'RESTAURANT'),
+(null,'STORE2',3,55,24,'This is the most popular store in Patras',TRUE,'COFFEE SHOP'),
+(null,'STORE3',4,50,30,'This is one of the best stores in Patras',TRUE,'PIZZA SHOP'),
+(null,'STORE4',4,50,30,'This is one of the great stores in Patras',TRUE,'RESTAURANT');
 
 INSERT INTO `STORE`(ID,OWNER_ID,CAPACITY,CURRENT_AVAILABILITY,DESCRIPTION,TYPE) VALUES
 (null,1,20,8,'This is the second best store in Patras','RESTAURANT');

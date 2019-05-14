@@ -127,20 +127,54 @@
 		</ul>
 
 		<!-- Drop down list -->
-		<form style="margin-top: 50px;margin-left: 50px;margin-right: 50px;"action="/action_page.php">
-			<select name="cars">
-				<option value="volvo">Volvo</option>
-				<option value="saab">Saab</option>
-				<option value="fiat">Fiat</option>
-				<option value="audi">Audi</option>
-			</select>
-		</form>
+		<?php
+			$db_server["host"] = "localhost"; //database server
+			$db_server["username"] = "softeng"; // DB username
+			$db_server["password"] = "softeng"; // DB password
+			$db_server["database"] = "RESERVE";// database name
 
-		<!-- Description -->
-		<h2 style="margin-bottom: 0;margin-left: 50px;">Description:	</h2>
-		<div>
-			<textarea style="font-size: 20px;margin-left: 50px;margin-right: 50px;" rows="4" cols="50">This is where the store page description goes.</textarea> 
-		</div>
+			$mysql_con = mysqli_connect($db_server["host"], $db_server["username"], $db_server["password"], $db_server["database"]);
+			$mysql_con->query ('SET CHARACTER SET utf8');
+			$mysql_con->query ('SET COLLATION_CONNECTION=utf8_unicode_ci');
+
+			$query = "SELECT * FROM STORE WHERE OWNER_ID=\"".$_SESSION['user_id']."\"";
+			$result = $mysql_con->query($query);
+			$stores = array();
+			$mysql_con->close();
+			include 'store.php';
+			while($row = $result->fetch_assoc()) {
+				array_push($stores, new Store($row['ID'], $row['STORE_NAME'], $row['OWNER_ID'], $row['CAPACITY'], $row['CURRENT_AVAILABILITY'], $row['DESCRIPTION'], $row['VISIBLE'], $row['TYPE'], $row['X'], $row['Y']));
+			}
+			echo '<form style="margin-top: 50px;margin-left: 50px;margin-right: 50px;" method="POST">';
+			echo '	<select name="Store">';
+			for($i=0;$i<sizeof($stores);$i++){
+				echo 	'<option value="'.$stores[$i]->Name.'">'.$stores[$i]->Name.'</option>';
+			}
+			echo '	<input type="submit" name="submit" value="Load" />';
+			echo '	</select>';
+			echo '</form>';
+
+			$selected_val = "";
+			if(isset($_POST['submit'])){
+				$selected_val = $_POST['Store'];  // Storing Selected Value In Variable
+				#echo "<h1>".$selected_val."</h1>";  // Displaying Selected Value
+			
+				$curr = -1;
+				for($i=0;$i<sizeof($stores);$i++){
+					if(strcmp($selected_val, $stores[$i]->Name) == 0){
+						$curr = $i;
+					}
+				}
+				#echo "<h1>".$curr."</h1>";
+				
+				# Description 
+				echo '<h2 style="margin-bottom: 0;margin-left: 50px;">Description:</h2>';
+				echo '<div>';
+				echo '	<textarea style="font-size: 20px;margin-left: 50px;margin-right: 50px;" rows="4" cols="50">'.$stores[$curr]->Description.'</textarea>'; 
+				echo '</div>';
+			}
+		?>			
+
 
 		<!-- Address -->
 		<h2 style="margin-bottom: 0;margin-left: 50px;">Address:</h2>

@@ -16,7 +16,6 @@
 	else
 	{
 		//Check form info with database
-		//TO-DO Check with DB
 		$db_server["host"] = "localhost"; //database server
 		$db_server["username"] = "softeng"; // DB username
 		$db_server["password"] = "softeng"; // DB password
@@ -38,6 +37,9 @@
 		}
 		else
 		{
+			$row = $result->fetch_assoc();
+			$_SESSION['user_id'] = $row['ID'];
+
 			//Create session for user
 			$_SESSION['session_username'] = $_POST['username'];
 			header('location: UpdatePage.php');
