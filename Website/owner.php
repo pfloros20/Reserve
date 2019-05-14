@@ -1,5 +1,5 @@
 <?php
-	class OWNER{
+	class Owner{
 
 		public $ID;
 		public $Username;
