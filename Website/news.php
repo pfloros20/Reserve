@@ -84,12 +84,12 @@
 			?>	
 		</ul>
 
-		<!-- Description -->
-		<h2 style="margin-bottom: 0;margin-left: 50px;">Description</h2>
+		<!-- News -->
+		<h2 style="margin-bottom: 0;margin-left: 50px;">News</h2>
 		<div>
 			<p style="font-size: 20px;margin-left: 50px;margin-right: 50px;">
 				<?php 
-					echo file_get_contents("Description.txt");
+					echo file_get_contents("News.txt");
 				?>
 			</p>
 		</div>

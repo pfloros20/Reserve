@@ -108,7 +108,7 @@
 	<body>
 		<!-- Title -->
 		<h1 style="margin-top: 0;margin-bottom: 0;">Reserve</h1>
-		<h2 style="margin-top: 0;margin-bottom: 0;margin-left: 5px;font-weight: normal;color: #777777;">Reserve seats on your favorite stores<br> in real time.</h2>
+		<h2 style="margin-top: 0;margin-bottom: 0;margin-left: 5px;font-weight: normal;color: #777777;">Reserve seats in your favorite stores<br> in real time.</h2>
 
 		<!-- Profile -->
 		<div class="topright">
@@ -120,9 +120,9 @@
 		<!-- Navbar -->
 		<ul>
 			<li><a href="index.php" >Home</a></li>
-			<li><a href="#" >News</a></li>
-			<li><a href="#" >Contact</a></li>
-			<li><a href="#" >About Us</a></li>
+			<li><a href="news.php" >News</a></li>
+			<li><a href="contact.php" >Contact</a></li>
+			<li><a href="about_us.php" >About Us</a></li>
 			<li><a href="UpdatePage.php" >Update Page</a></li>
 		</ul>
 
