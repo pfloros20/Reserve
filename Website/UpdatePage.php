@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<?php
+ 	session_start();
+	if(!isset($_SESSION['session_username'])){
+		header("location: index.php");
+		exit();
+	}
+?>
 <html lang="en">
 	<title>Reserve!</title>
 	<head>	
@@ -46,6 +52,9 @@
 				width: 50px;
 				height: 50px;
 				border-radius: 50%;
+				margin-top: 0px;
+				margin-bottom: 0px;
+				margin-left: 0px;
 			}
 
 			/* The grid: Four equal columns that floats next to each other */
@@ -103,10 +112,11 @@
 
 		<!-- Profile -->
 		<div class="topright">
-			<h3 style="margin-top: 0;margin-bottom: 0;font-weight: normal;">Welcome, Username!</h3>
+			<h3 style="margin-top: 0;margin-bottom: 0px;font-weight: normal;">Welcome, <b><?php echo $_SESSION['session_username'];?></b>!</h3>
 			<img src="profile.jpg" class="profile_pic">
 		</div>
 
+			<br><a style="top: 80px;" class="topright" href='logoff.php'>Log off</a>
 		<!-- Navbar -->
 		<ul>
 			<li><a href="#" >Home</a></li>
