@@ -32,6 +32,19 @@
 			top: 8px;
 			right: 16px;
 			font-size: 18px;
+		}
+
+		.profile_pic {
+			vertical-align: middle;
+			float: right;
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			margin-left: 0px;
+		}
+
 	}
 	</style>
 	<body>
@@ -40,19 +53,35 @@
 		<h2 style="margin-top: 0;margin-bottom: 0;margin-left: 5px;font-weight: normal;color: #777777;">Reserve seats in your favorite stores<br> in real time.</h2>
 
 		<!-- Log In -->
-		<form class="topright" name="login_form" method="POST" action="login.php">
-			<h5 style="margin-top: 0;margin-bottom: 0;font-weight: normal;">Login:</h5>
-			<input style="width: 100%;" type="text" name="username" placeholder="Username"><br>
-			<input style="width: 100%;" type="password" name="password" placeholder="Password"><br>
-			<input style="width: 100%;background-color: #555555;color: #FFFFFF;" type="submit" value="Login">
-		</form>
+		<?php
+		 	session_start();
+			if(!isset($_SESSION['session_username'])){
+				echo '<form class="topright" name="login_form" method="POST" action="login.php">
+						<h5 style="margin-top: 0;margin-bottom: 0;font-weight: normal;">Login:</h5>
+						<input style="width: 100%;" type="text" name="username" placeholder="Username"><br>
+						<input style="width: 100%;" type="password" name="password" placeholder="Password"><br>
+						<input style="width: 100%;background-color: #555555;color: #FFFFFF;" type="submit" value="Login">
+					</form>';
+			}else{
+				echo '<div class="topright">
+						<h3 style="margin-top: 0;margin-bottom: 0px;font-weight: normal;">Welcome, <b>'.$_SESSION['session_username'].'</b>!</h3>
+						<img src="profile.jpg" class="profile_pic">
+					</div>
+					<br><a style="top: 80px;" class="topright" href=\'logoff.php\'>Log off</a>';
+			}
+		?>
 
 		<!-- Navbar -->
 		<ul>
-			<li><a href="#" >Home</a></li>
+			<li><a href="index.php" >Home</a></li>
 			<li><a href="#" >News</a></li>
 			<li><a href="#" >Contact</a></li>
 			<li><a href="#" >About Us</a></li>
+			<?php
+				if(isset($_SESSION['session_username'])){
+					echo '<li><a href="UpdatePage.php" >Update Page</a></li>';
+				}
+			?>	
 		</ul>
 
 		<!-- Description -->

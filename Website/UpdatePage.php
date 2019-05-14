@@ -119,10 +119,11 @@
 			<br><a style="top: 80px;" class="topright" href='logoff.php'>Log off</a>
 		<!-- Navbar -->
 		<ul>
-			<li><a href="#" >Home</a></li>
+			<li><a href="index.php" >Home</a></li>
 			<li><a href="#" >News</a></li>
 			<li><a href="#" >Contact</a></li>
 			<li><a href="#" >About Us</a></li>
+			<li><a href="UpdatePage.php" >Update Page</a></li>
 		</ul>
 
 		<!-- Drop down list -->
