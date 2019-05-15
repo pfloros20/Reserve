@@ -25,8 +25,8 @@ INSERT INTO `STORE`(ID, STORE_NAME, OWNER_ID, CAPACITY, CURRENT_AVAILABILITY, DE
 (null,'STORE3',4,50,30,'This is one of the best stores in Patras',TRUE,'PIZZA SHOP'),
 (null,'STORE4',4,50,30,'This is one of the great stores in Patras',TRUE,'RESTAURANT');
 
-INSERT INTO `STORE`(ID,OWNER_ID,CAPACITY,CURRENT_AVAILABILITY,DESCRIPTION,TYPE) VALUES
-(null,1,20,8,'This is the second best store in Patras','RESTAURANT');
+INSERT INTO `STORE`(ID, STORE_NAME, OWNER_ID, CAPACITY, CURRENT_AVAILABILITY, DESCRIPTION, TYPE) VALUES
+(null,'STORE5',1,20,8,'This is the second best store in Patras','RESTAURANT');
 
 INSERT INTO `TABLE` VALUES
 (null,1,4,'FREE'),
@@ -104,10 +104,11 @@ INSERT INTO `VISITED` VALUES
 (null,3,5);
 
 INSERT INTO `EVENT` VALUES
-(null,1,'2019-5-10','2019-5-16','2nd anniversary'),
-(null,3,'2019-7-1','2019-7-7','5th anniversary'),
-(null,4,'2019-1-1','2019-1-2','3rd anniversary'),
-(null,5,'2019-5-13','2019-5-13','mother birthday');
+(null,'EVENT0',1,'2019-5-10','2019-5-16','2nd anniversary'),
+(null,'EVENT1',3,'2019-7-1','2019-7-7','5th anniversary'),
+(null,'EVENT2',4,'2019-1-1','2019-1-2','3rd anniversary'),
+(null,'EVENT3',5,'2019-5-13','2019-5-13','mother birthday'),
+(null,'EVENT4',4,'2019-1-1','2019-1-2','35th anniversary');
 
 INSERT INTO `REVIEW` VALUES
 (null,1,1,4,''),

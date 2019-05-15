@@ -65,7 +65,7 @@
 			}else{
 				echo '<div class="topright">
 						<h3 style="margin-top: 0;margin-bottom: 0px;font-weight: normal;">Welcome, <b>'.$_SESSION['session_username'].'</b>!</h3>
-						<img src="profile.jpg" class="profile_pic">
+						<img src="Resources/profile.jpg" class="profile_pic">
 					</div>
 					<br><a style="top: 80px;" class="topright" href=\'logoff.php\'>Log off</a>';
 			}

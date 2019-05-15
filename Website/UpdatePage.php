@@ -4,6 +4,11 @@
 		header("location: index.php");
 		exit();
 	}
+	if($_SESSION['update_page_initialized'] == 0){
+		$_SESSION['selected_store'] = "";
+		$_SESSION['selected_event'] = "";
+		$_SESSION['update_page_initialized'] = 1;
+	}
 ?>
 <html lang="en">
 	<title>Reserve!</title>
@@ -140,11 +145,12 @@
 			$query = "SELECT * FROM STORE WHERE OWNER_ID=\"".$_SESSION['user_id']."\"";
 			$result = $mysql_con->query($query);
 			$stores = array();
-			$mysql_con->close();
+
 			include 'Classes/store.php';
 			while($row = $result->fetch_assoc()) {
 				array_push($stores, new Store($row['ID'], $row['STORE_NAME'], $row['OWNER_ID'], $row['CAPACITY'], $row['CURRENT_AVAILABILITY'], $row['DESCRIPTION'], $row['VISIBLE'], $row['TYPE'], $row['X'], $row['Y']));
 			}
+			$curr = 0;
 			echo '<form style="margin-top: 50px;margin-left: 50px;margin-right: 50px;" method="POST">';
 			echo '	<select name="Store">';
 			for($i=0;$i<sizeof($stores);$i++){
@@ -154,77 +160,66 @@
 			echo '	</select>';
 			echo '</form>';
 
-			$selected_val = "";
+
 			if(isset($_POST['submit'])){
-				$selected_val = $_POST['Store'];  // Storing Selected Value In Variable
-				#echo "<h1>".$selected_val."</h1>";  // Displaying Selected Value
-			
-				$curr = -1;
-				for($i=0;$i<sizeof($stores);$i++){
-					if(strcmp($selected_val, $stores[$i]->Name) == 0){
-						$curr = $i;
-					}
-				}
-				#echo "<h1>".$curr."</h1>";
-				
-				# Description 
-				echo '<h2 style="margin-bottom: 0;margin-left: 50px;">Description:</h2>';
-				echo '<div>';
-				echo '	<textarea style="font-size: 20px;margin-left: 50px;margin-right: 50px;" rows="4" cols="50">'.$stores[$curr]->Description.'</textarea>'; 
-				echo '</div>';
+				$_SESSION['selected_store'] = $_POST['Store'];
+				$_SESSION['selected_event'] = "";
 			}
-		?>			
+			for($i=0;$i<sizeof($stores);$i++){
+				if(strcmp($_SESSION['selected_store'], $stores[$i]->Name) == 0){
+					$curr = $i;
+				}
+			}
+			echo '<a style="margin-top: 50px;margin-left: 50px;margin-right: 50px;">Current Store: </a>'.$_SESSION['selected_store'];
+			# Description 
+			echo '<h2 style="margin-bottom: 0;margin-left: 50px;">Description:</h2>';
+			echo '<div>';
+			echo '	<textarea style="font-size: 20px;margin-left: 50px;margin-right: 50px;" rows="4" cols="50">'.$stores[$curr]->Description.'</textarea>'; 
+			echo '</div>';
 
 
-		<!-- Address -->
-		<h2 style="margin-bottom: 0;margin-left: 50px;">Address:</h2>
-		<div style="font-size: 20px;margin-left: 50px;margin-right: 50px;">
-			<input type="address" name="address" placeholder="Address, City"><br>
-		</div>
+			$query = "SELECT * FROM EVENT WHERE STORE_ID=\"".$stores[$curr]->ID."\"";
+			$result = $mysql_con->query($query);
+			$events = array();
 
-		<!-- Schedule -->
-		<h2 style="margin-bottom: 0;margin-left: 50px;">Schedule:</h2>
-		<div>
-			<div style="font-size: 20px;margin-left: 50px;" rows="7" cols="11">
-				<p>
-					<label>Monday:</label>
-					<input type="address" name="address" placeholder="hh:mm-hh:mm">
-				</p>
-				<p>
-					<label>Tuesday:</label>
-					<input type="address" name="address" placeholder="hh:mm-hh:mm">
-				</p>
-				<p>
-					<label>Wednesday:</label>
-					<input type="address" name="address" placeholder="hh:mm-hh:mm">
-				</p>
-				<p>
-					<label>Thursday:</label>
-					<input type="address" name="address" placeholder="hh:mm-hh:mm">
-				</p>
-				<p>
-					<label>Friday:</label>
-					<input type="address" name="address" placeholder="hh:mm-hh:mm">
-				</p>
-				<p>
-					<label>Saturday:</label>
-					<input type="address" name="address" placeholder="hh:mm-hh:mm">
-				</p>
-				<p>
-					<label>Sunday:</label>
-					<input type="address" name="address" placeholder="hh:mm-hh:mm">
-				</p>
-			</div> 
-		</div>
+			$curr_ev = 0;
+			include 'Classes/event.php';
+			while($row = $result->fetch_assoc()) {
+				array_push($events, new Events($row['ID'], $row['EVENT_NAME'], $row['STORE_ID'], $row['START_DATE'], $row['END_DATE'], $row['DESCRIPTION']));
+			}
 
-		<!-- Events -->
-		<h2 style="margin-bottom: 0;margin-left: 50px;">Events:</h2>
-		<div>
-			<textarea style="font-size: 20px;margin-left: 50px;margin-right: 50px;" rows="4" cols="50">This is where the event description goes.</textarea> 
-		</div>
+			echo '<form style="margin-top: 50px;margin-left: 50px;margin-right: 50px;" method="POST">';
+			echo '	<select name="Event">';
+			for($i=0;$i<sizeof($events);$i++){
+				echo 	'<option value="'.$events[$i]->Name.'">'.$events[$i]->Name.'</option>';
+			}
+			echo '	<input type="submit" name="submit_ev" value="Load" />';
+			echo '	</select>';
+			echo '</form>';
+
+
+			if(isset($_POST['submit_ev'])){
+				$_SESSION['selected_event'] = $_POST['Event'];	
+			}
+		
+			for($i=0;$i<sizeof($events);$i++){
+				if(strcmp($_SESSION['selected_event'], $events[$i]->Name) == 0){
+					$curr_ev = $i;
+				}
+			}
+				echo '<a style="margin-top: 50px;margin-left: 50px;margin-right: 50px;">Current Event: </a>'.$_SESSION['selected_event'];
+				# Event 
+				echo '<h2 style="margin-bottom: 0;margin-left: 50px;">Event:</h2>';
+				echo '<div>';
+				echo '	<textarea style="font-size: 20px;margin-left: 50px;margin-right: 50px;" rows="4" cols="50">'.$events[$curr_ev]->Description.'</textarea>'; 
+				echo '</div>';
+			
+		?>
+
 
 		<!-- Map -->
 		<div class="topright" style="margin-top: 192px;margin-right: 34px">
+			<b>Click to change address.</b>
 			<div id="mapid"></div>
 			<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
 			   integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
@@ -248,7 +243,7 @@
 		</div>
 
 		 <!-- The grid: four columns -->
-		<div class="topright" style="margin-top: 592px;margin-right: 39px">
+		<div class="topright" style="margin-top: 600px;margin-right: 39px">
 			<div class="column">
 				<img src="Resources/example1.png" onclick="myFunction(this);">
 			 </div>

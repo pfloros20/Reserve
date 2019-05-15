@@ -42,6 +42,7 @@
 
 			//Create session for user
 			$_SESSION['session_username'] = $_POST['username'];
+			$_SESSION['update_page_initialized'] = 0;
 			header('location: UpdatePage.php');
 			exit();
 		}
