@@ -1,16 +1,17 @@
-package com.example.admin;
+package com.example.reserve;
+
+import java.util.ArrayList;
 
 public class Owner {
 
     int ID;
     String Username;
     String Password;
-    String[] Stores;
+    ArrayList<String> Stores = new ArrayList<String>();
 
     public Owner(int ID, String Username, String Password, String[] Stores){
         this.ID = ID;
         this.Username = Username;
         this.Password = Password;
-        this.Stores = Stores;
     }
 }

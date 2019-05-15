@@ -1,6 +1,7 @@
-package com.example.admin;
+package com.example.reserve;
 
 public class Admin {
+
     int ID;
     String Username;
     String Password;
