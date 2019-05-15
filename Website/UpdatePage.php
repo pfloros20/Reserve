@@ -7,6 +7,8 @@
 	if($_SESSION['update_page_initialized'] == 0){
 		$_SESSION['selected_store'] = "";
 		$_SESSION['selected_event'] = "";
+		$_SESSION['store_id'] = 0;
+		$_SESSION['event_id'] = 0;
 		$_SESSION['update_page_initialized'] = 1;
 	}
 ?>
@@ -172,10 +174,15 @@
 			}
 			echo '<a style="margin-top: 50px;margin-left: 50px;margin-right: 50px;">Current Store: </a>'.$_SESSION['selected_store'];
 			# Description 
-			echo '<h2 style="margin-bottom: 0;margin-left: 50px;">Description:</h2>';
-			echo '<div>';
-			echo '	<textarea style="font-size: 20px;margin-left: 50px;margin-right: 50px;" rows="4" cols="50">'.$stores[$curr]->Description.'</textarea>'; 
-			echo '</div>';
+			echo '<h2 style="margin-bottom: 0;margin-left: 50px;">Description:</h2>
+				<form id="store_description" method="POST" action="store_description.php">
+					<div>
+				 	<textarea style="font-size: 20px;margin-left: 50px;margin-right: 50px;" rows="4" cols="50" name="store_description">'.$stores[$curr]->Description.'</textarea>
+						<br>
+						<input type="hidden" name="store_id" value='.$stores[$curr]->ID.'>
+						<input style="font-size: 18px;margin-left: 50px;background-color: #555555;color: #FFFFFF;" type="submit" value="Save Changes">
+					</div>
+				</form>';
 
 
 			$query = "SELECT * FROM EVENT WHERE STORE_ID=\"".$stores[$curr]->ID."\"";
@@ -209,10 +216,15 @@
 			}
 				echo '<a style="margin-top: 50px;margin-left: 50px;margin-right: 50px;">Current Event: </a>'.$_SESSION['selected_event'];
 				# Event 
-				echo '<h2 style="margin-bottom: 0;margin-left: 50px;">Event:</h2>';
-				echo '<div>';
-				echo '	<textarea style="font-size: 20px;margin-left: 50px;margin-right: 50px;" rows="4" cols="50">'.$events[$curr_ev]->Description.'</textarea>'; 
-				echo '</div>';
+			echo '<h2 style="margin-bottom: 0;margin-left: 50px;">Event:</h2>
+				<form id="store_description" method="POST" action="event_description.php">
+					<div>
+				 	<textarea style="font-size: 20px;margin-left: 50px;margin-right: 50px;" rows="4" cols="50" name="event_description">'.$events[$curr_ev]->Description.'</textarea>
+						<br>
+						<input type="hidden" name="event_id" value='.$events[$curr_ev]->ID.'>
+						<input style="font-size: 18px;margin-left: 50px;background-color: #555555;color: #FFFFFF;" type="submit" value="Save Changes">
+					</div>
+				</form>';
 		
 
 
