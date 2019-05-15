@@ -213,34 +213,45 @@
 				echo '<div>';
 				echo '	<textarea style="font-size: 20px;margin-left: 50px;margin-right: 50px;" rows="4" cols="50">'.$events[$curr_ev]->Description.'</textarea>'; 
 				echo '</div>';
-			
+		
+
+
+				# Map
+				echo '<div class="topright" style="margin-top: 192px;margin-right: 34px">
+					<b>Click to change address.</b>
+					<div id="mapid"></div>
+					<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+					   integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+					   crossorigin=""></script>
+					<script>
+						var mymap = L.map(\'mapid\').setView(['.$stores[$curr]->x.', '.$stores[$curr]->y.'], 13);
+
+						L.tileLayer(\'http://{s}.tile.osm.org/{z}/{x}/{y}.png\', {
+						        attribution: \'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors\'
+						    }).addTo(mymap);
+						var marker = L.marker(['.$stores[$curr]->x.', '.$stores[$curr]->y.']).addTo(mymap);
+
+						mymap.on(\'click\', function(ev){
+							var latlng = mymap.mouseEventToLatLng(ev.originalEvent);
+							console.log(latlng.lat + \', \' + latlng.lng);
+							var xhttp = new XMLHttpRequest();
+							xhttp.onreadystatechange = function() {
+							    if (this.readyState == 4 && this.status == 200){
+							    	console.log(JSON.parse(this.responseText));
+							    }
+							};
+							xhttp.open("POST", "store_loc.php", false);
+							xhttp.setRequestHeader(\'Content-Type\', \'application/x-www-form-urlencoded\');
+							xhttp.send(\'x=\'+latlng.lat+\'&y=\'+latlng.lng+\'&id='.$stores[$curr]->ID.'\');
+							setTimeout("location.reload(true);",10);
+						});
+
+					</script>
+			</div>';	
 		?>
 
 
-		<!-- Map -->
-		<div class="topright" style="margin-top: 192px;margin-right: 34px">
-			<b>Click to change address.</b>
-			<div id="mapid"></div>
-			<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
-			   integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
-			   crossorigin=""></script>
-			<script>
-				var map;
-				var marker;
 
-				mymap = L.map('mapid').setView([51.505, -0.09], 13);
-				mymap.on('click', function(ev){
-				  var latlng = mymap.mouseEventToLatLng(ev.originalEvent);
-				  x= latlng.lat;
-				  y= latlng.lng;
-				  console.log(latlng.lat + ', ' + latlng.lng);
-				});
-				L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-				        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-				    }).addTo(mymap);
-				marker = L.marker([51.505, -0.09]).addTo(mymap);
-			</script>
-		</div>
 
 		 <!-- The grid: four columns -->
 		<div class="topright" style="margin-top: 600px;margin-right: 39px">
