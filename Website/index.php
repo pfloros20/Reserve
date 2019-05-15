@@ -89,7 +89,7 @@
 		<div>
 			<p style="font-size: 20px;margin-left: 50px;margin-right: 50px;">
 				<?php 
-					echo file_get_contents("Description.txt");
+					echo file_get_contents("Resources/Description.txt");
 				?>
 			</p>
 		</div>

@@ -113,7 +113,7 @@
 		<!-- Profile -->
 		<div class="topright">
 			<h3 style="margin-top: 0;margin-bottom: 0px;font-weight: normal;">Welcome, <b><?php echo $_SESSION['session_username'];?></b>!</h3>
-			<img src="profile.jpg" class="profile_pic">
+			<img src="Resources/profile.jpg" class="profile_pic">
 		</div>
 
 			<br><a style="top: 80px;" class="topright" href='logoff.php'>Log off</a>
@@ -141,7 +141,7 @@
 			$result = $mysql_con->query($query);
 			$stores = array();
 			$mysql_con->close();
-			include 'store.php';
+			include 'Classes/store.php';
 			while($row = $result->fetch_assoc()) {
 				array_push($stores, new Store($row['ID'], $row['STORE_NAME'], $row['OWNER_ID'], $row['CAPACITY'], $row['CURRENT_AVAILABILITY'], $row['DESCRIPTION'], $row['VISIBLE'], $row['TYPE'], $row['X'], $row['Y']));
 			}
@@ -250,16 +250,16 @@
 		 <!-- The grid: four columns -->
 		<div class="topright" style="margin-top: 592px;margin-right: 39px">
 			<div class="column">
-				<img src="example1.png" onclick="myFunction(this);">
+				<img src="Resources/example1.png" onclick="myFunction(this);">
 			 </div>
 			<div class="column">
-				<img src="example2.png" onclick="myFunction(this);">
+				<img src="Resources/example2.png" onclick="myFunction(this);">
 			</div>
 			<div class="column">
-				<img src="example3.png" onclick="myFunction(this);">
+				<img src="Resources/example3.png" onclick="myFunction(this);">
   			</div>
 			<div class="column">
-				<img src="example4.png" onclick="myFunction(this);">
+				<img src="Resources/example4.png" onclick="myFunction(this);">
 			</div>
 		</div>
 
