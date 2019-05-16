@@ -9,7 +9,7 @@ public class Owner {
     String Password;
     ArrayList<String> Stores = new ArrayList<String>();
 
-    public Owner(int ID, String Username, String Password, String[] Stores){
+    public Owner(int ID, String Username, String Password, ArrayList<String> Stores){
         this.ID = ID;
         this.Username = Username;
         this.Password = Password;
