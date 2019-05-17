@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
                 String username = (Username.getText()).toString();
                 String password = (Password.getText()).toString();
 
-                String user = "george52";
-                String pass = "kodikos";
+                String user = "a";
+                String pass = "a";
 
                 if (username.equalsIgnoreCase(user) && password.equalsIgnoreCase(pass)) {
                     Intent startIntent = new Intent(getApplicationContext(), Start_Page.class);
