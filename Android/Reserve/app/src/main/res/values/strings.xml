@@ -3,4 +3,37 @@
     <string name="Store_Name">TextView</string>
     <string name="Description">Description</string>
     <string name="Review_Number">13</string>
+
+    <string-array name="stores">
+        <item>Makina</item>
+        <item>Molos</item>
+        <item>Destro</item>
+        <item>KK</item>
+        <item>LOL</item>
+    </string-array>
+
+    <string-array name="descriptions">
+        <item>da best</item>
+        <item>epic</item>
+        <item>not so bad</item>
+        <item>not so good</item>
+        <item>seen better</item>
+    </string-array>
+
+    <string-array name="review_number">
+        <item>23</item>
+        <item>99</item>
+        <item>12</item>
+        <item>32</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="stars">
+        <item>Stars: 2.5</item>
+        <item>Stars: 5</item>
+        <item>Stars: 3</item>
+        <item>Stars: 3.5</item>
+        <item>Stars: 1</item>
+    </string-array>
+
 </resources>

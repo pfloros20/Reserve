@@ -1,20 +1,18 @@
 package com.example.reserve;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.res.Resources;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class Start_Page extends AppCompatActivity {
 
-    String[] stores = {"Makina","Molos","Destro"};
-    String[] descriptions = {"da best","epic","not a good choice"};
-    int[] review_number = {23,99,12};
-    float[] stars = {3,5,(5/2)};
+    ListView storelist;
+    String[] stores;
+    String[] descriptions;
+    String[] review_number;
+    String[] stars ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +23,13 @@ public class Start_Page extends AppCompatActivity {
             TextView text = (TextView)findViewById(R.id.textView14);
             text.setText(getIntent().getExtras().getString("ID2"));
 
-            ListView storelist = (ListView)findViewById(R.id.storelist);
-            /*stores = res.getStringArray(R.array.stores);
+
+            Resources res = getResources();
+            storelist = (ListView)findViewById(R.id.storelist);
+            stores = res.getStringArray(R.array.stores);
             descriptions = res.getStringArray(R.array.descriptions);
-            review_number = res.getIntegerArray(R.array.review_number);
-            stars = res.getIntegerArray(R.array.stars);*/
+            review_number = res.getStringArray(R.array.review_number);
+            stars = res.getStringArray(R.array.stars);
 
             MyAdapter myAdapter = new MyAdapter(this, stores, descriptions, review_number, stars);
 
