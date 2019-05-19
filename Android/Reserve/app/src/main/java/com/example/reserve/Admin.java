@@ -2,9 +2,9 @@ package com.example.reserve;
 
 public class Admin {
 
-    int ID;
-    String Username;
-    String Password;
+    public int ID;
+    public String Username;
+    public String Password;
 
     public Admin(int ID, String Username, String Password){
         this.ID = ID;

@@ -14,6 +14,6 @@ public class Event {
         this.Store = Store;
         this.StartDate = StartDate;
         this.EndDate = EndDate;
-        this.Description =Description;
+        this.Description = Description;
     }
 }
