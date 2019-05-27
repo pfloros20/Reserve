@@ -3,6 +3,7 @@
     <string name="Store_Name">TextView</string>
     <string name="Description">Description</string>
     <string name="Review_Number">13</string>
+    <string name="textview">TextView</string>
 
     <string-array name="stores">
         <item>Makina</item>
@@ -29,11 +30,26 @@
     </string-array>
 
     <string-array name="stars">
-        <item>Stars: 2.5</item>
-        <item>Stars: 5</item>
-        <item>Stars: 3</item>
-        <item>Stars: 3.5</item>
-        <item>Stars: 1</item>
+        <item>2.5</item>
+        <item>5</item>
+        <item>3</item>
+        <item>3.5</item>
+        <item>1</item>
     </string-array>
 
+    <string-array name="address">
+        <item>Korin8ou 24</item>
+        <item>Agiou Nikolaou 0</item>
+        <item>Kolokotroni 72</item>
+        <item>Zaimi 35</item>
+        <item>Ellinou Stratioti 9</item>
+    </string-array>
+
+    <string-array name="capacity">
+        <item>33</item>
+        <item>10</item>
+        <item>30</item>
+        <item>74</item>
+        <item>62</item>
+    </string-array>
 </resources>

@@ -4,22 +4,19 @@ import java.util.ArrayList;
 
 public class User {
 
-    public int ID;
-    public String Username;
-    public String Password;
-    public ArrayList<String> Reviews = new ArrayList<String>();
-    public ArrayList<String> Visited = new ArrayList<String>();
-    public ArrayList<String> Reports = new ArrayList<String>();
-    public float X;
-    public float Y;
+    int ID;
+    String Username;
+    String Password;
+    ArrayList<String> Reviews = new ArrayList<String>();
+    ArrayList<String> Visited = new ArrayList<String>();
+    ArrayList<String> Reports = new ArrayList<String>();
+    float X;
+    float Y;
 
-    public User(int ID, String Username, String Password, ArrayList<String> Reviews, ArrayList<String> Visited, ArrayList<String> Reports, float X, float Y){
+    public User(int ID, String Username, String Password, String[] Reviews, String[] Visited, String[] Reports, float X, float Y){
         this.ID = ID;
         this.Username = Username;
         this.Password = Password;
-		this.Reviews = Reviews;
-		this.Visited = Visited;
-		this.Reports = Reports;
         this.X = X;
         this.Y = Y;
     }

@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (username.equalsIgnoreCase(user) && password.equalsIgnoreCase(pass)) {
                     Intent startIntent = new Intent(getApplicationContext(), Start_Page.class);
-                    startIntent.putExtra("ID2", username);
+                    startIntent.putExtra("Username", username);
                     startActivity(startIntent);
                 }else{
                     Toast.makeText(MainActivity.this,"Wrong name or pass!",Toast.LENGTH_LONG).show();

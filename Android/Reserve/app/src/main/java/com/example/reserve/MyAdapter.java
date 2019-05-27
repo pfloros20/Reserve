@@ -10,8 +10,8 @@ import android.widget.TextView;
 public class MyAdapter extends BaseAdapter {
 
     LayoutInflater mInflater;
-    String[] stores;
-    String[] descriptions;
+    String[]   stores;
+    String[]   descriptions;
     String[]   review_number;
     String[]   stars;
 
