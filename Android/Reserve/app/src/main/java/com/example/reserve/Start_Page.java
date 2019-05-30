@@ -19,6 +19,7 @@ public class Start_Page extends AppCompatActivity {
     String[] stars;
     String[] address;
     String[] capacity;
+    public String user;
 
     private ListView mDrawerList;
     private ArrayAdapter<String> myArrayAdapter;
@@ -28,8 +29,10 @@ public class Start_Page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start__page);
 
+        user =  getIntent().getExtras().getString("Username");
+
         mDrawerList = (ListView)findViewById(R.id.navList);
-        addOptions();
+        addOptions(user, mDrawerList, myArrayAdapter);
 
         if(getIntent().hasExtra("Username")){
 
@@ -54,6 +57,7 @@ public class Start_Page extends AppCompatActivity {
                     store_page.putExtra("Stars", stars[position]);
                     store_page.putExtra("Address", address[position]);
                     store_page.putExtra("Capacity", capacity[position]);
+                    store_page.putExtra("User", user);
                     startActivity(store_page);
                 }
             });
@@ -67,8 +71,8 @@ public class Start_Page extends AppCompatActivity {
         });
 
     }
-    private void addOptions(){
-        String[] user_options = { getIntent().getExtras().getString("Username"), "Start Page", "Reservations", "Favourites", "Events", "Reviews", "Log Out", "Communication"};
+    private void addOptions(String user, ListView mDrawerList, ArrayAdapter<String> myArrayAdapter){
+        String[] user_options = {user, "Start Page", "Reservations", "Favourites", "Events", "Reviews", "Log Out", "Communication"};
         myArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, user_options);
         mDrawerList.setAdapter(myArrayAdapter);
     }

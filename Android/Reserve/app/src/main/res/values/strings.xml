@@ -4,6 +4,7 @@
     <string name="Description">Description</string>
     <string name="Review_Number">13</string>
     <string name="textview">TextView</string>
+    <string name="user">User</string>
 
     <string-array name="stores">
         <item>Makina</item>
@@ -11,6 +12,14 @@
         <item>Destro</item>
         <item>KK</item>
         <item>LOL</item>
+    </string-array>
+
+    <string-array name="users">
+        <item>George</item>
+        <item>Makis</item>
+        <item>Dimitris</item>
+        <item>Leuteris</item>
+        <item>Maria</item>
     </string-array>
 
     <string-array name="descriptions">
@@ -27,6 +36,14 @@
         <item>12</item>
         <item>32</item>
         <item>5</item>
+    </string-array>
+
+    <string-array name="reviews">
+        <item>Da best in the city.</item>
+        <item>Epic party every summer.</item>
+        <item>Not so bad if you go alone.</item>
+        <item>Not so good, i have been to better stores.</item>
+        <item>Seen better.</item>
     </string-array>
 
     <string-array name="stars">

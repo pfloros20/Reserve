@@ -1,16 +1,28 @@
 package com.example.reserve;
 
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Store_Page extends AppCompatActivity {
+
+    private ListView mDrawerList;
+    private ArrayAdapter<String> myArrayAdapter;
+    String[] users;
+    String[] reviews;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +30,15 @@ public class Store_Page extends AppCompatActivity {
         setContentView(R.layout.activity_store__page);
 
         final boolean favourite;
+        mDrawerList = (ListView)findViewById(R.id.navList);
+
+        Resources res = getResources();
+        users = res.getStringArray(R.array.users);
+        reviews = res.getStringArray(R.array.reviews);
+        String user = getIntent().getExtras().getString("User");
+
+
+        addOptions(user, mDrawerList, myArrayAdapter);
 
         LinearLayout gallery = (LinearLayout)findViewById(R.id.gallery);
 
@@ -32,21 +53,31 @@ public class Store_Page extends AppCompatActivity {
             gallery.addView(view);
         }
 
-
+        ListView storelist = (ListView)findViewById(R.id.Reviewlist);
         TextView Store_name = (TextView)findViewById(R.id.StoreName);
         RatingBar rating = (RatingBar)findViewById(R.id.Rating);
         TextView Store_address = (TextView)findViewById(R.id.StoreAddress);
         TextView Store_capacity = (TextView)findViewById(R.id.Capacity);
         final ImageButton favouriteOFF = (ImageButton)findViewById(R.id.favouriteOFF);
         final ImageButton favouriteON = (ImageButton)findViewById(R.id.favouriteON);
+        ImageView Store_map = (ImageView)findViewById(R.id.StoreMap);
+        Button reservation_btn = (Button)findViewById(R.id.ReservationBtn);
+        Button events_btn = (Button)findViewById(R.id.EventsBtn);
+        Button menu_btn = (Button)findViewById(R.id.MenuBtn);
+        Button shedule_btn = (Button)findViewById(R.id.SheduleBtn);
 
+        Store_map.setImageResource(R.drawable.store);
         String Store_Name = getIntent().getExtras().getString("StoreName");
         float stars = Float.parseFloat(getIntent().getExtras().getString("Stars"));
         String Store_Address = getIntent().getExtras().getString("Address");
         String Store_Capacity = getIntent().getExtras().getString("Capacity");
 
+        MySecondAdapter mySAdapter = new MySecondAdapter(this, users, reviews);
+        storelist.setAdapter(mySAdapter);
+
         //if(favourite == false)
         favouriteON.setVisibility(View.INVISIBLE);
+        //map
 
         if(getIntent().hasExtra("StoreName")){
             Store_name.setText(Store_Name);
@@ -73,6 +104,50 @@ public class Store_Page extends AppCompatActivity {
             });
 
         }
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (id == 1) {
+                    Intent change = new Intent(getApplicationContext(), Store_Page.class);
+                    startActivity(change);
+                }else if(id == 0){
+                    Intent change = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(change);
+                }else{
+                    Toast.makeText(Store_Page.this, "Not implemented yet!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
+        reservation_btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Store_Page.this, "Not implemented yet!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        events_btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Store_Page.this, "Not implemented yet!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        menu_btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Store_Page.this, "Not implemented yet!", Toast.LENGTH_SHORT).show();            }
+        });
+
+        shedule_btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Store_Page.this, "Not implemented yet!", Toast.LENGTH_SHORT).show();            }
+        });
+    }
+    private void addOptions(String user, ListView mDrawerList, ArrayAdapter<String> myArrayAdapter){
+        String[] user_options = {user, "Start Page", "Reservations", "Favourites", "Events", "Reviews", "Log Out", "Communication"};
+        myArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, user_options);
+        mDrawerList.setAdapter(myArrayAdapter);
     }
 }
