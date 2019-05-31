@@ -67,10 +67,10 @@ public class Store_Page extends AppCompatActivity {
         Button shedule_btn = (Button)findViewById(R.id.SheduleBtn);
 
         Store_map.setImageResource(R.drawable.store);
-        String Store_Name = getIntent().getExtras().getString("StoreName");
-        float stars = Float.parseFloat(getIntent().getExtras().getString("Stars"));
-        String Store_Address = getIntent().getExtras().getString("Address");
-        String Store_Capacity = getIntent().getExtras().getString("Capacity");
+        String Store_Name = getIntent().getStringExtra("StoreName");
+        float stars = Float.parseFloat(getIntent().getStringExtra("StoreStars"));
+        String Store_Address = getIntent().getStringExtra("StoreAddress");
+        String Store_Capacity = getIntent().getStringExtra("StoreCapacity");
 
         MySecondAdapter mySAdapter = new MySecondAdapter(this, users, reviews);
         storelist.setAdapter(mySAdapter);
@@ -108,9 +108,9 @@ public class Store_Page extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (id == 1) {
-                    Intent change = new Intent(getApplicationContext(), Store_Page.class);
+                    Intent change = new Intent(getApplicationContext(), Start_Page.class);
                     startActivity(change);
-                }else if(id == 0){
+                }else if(id == 6){
                     Intent change = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(change);
                 }else{

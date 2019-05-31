@@ -13,10 +13,19 @@ public class User {
     float X;
     float Y;
 
-    public User(int ID, String Username, String Password, String[] Reviews, String[] Visited, String[] Reports, float X, float Y){
+    public User(int ID, String Username, String Password, ArrayList<String> Reviews, ArrayList<String> Visited, ArrayList<String> Reports, float X, float Y){
         this.ID = ID;
         this.Username = Username;
         this.Password = Password;
+        for (int i=0; i<Reviews.size();i++) {
+            this.Reviews.add(Reviews.get(i));
+        }
+        for (int i=0; i<Visited.size();i++) {
+            this.Visited.add(Visited.get(i));
+        }
+        for (int i=0; i<Reports.size();i++) {
+            this.Reports.add(Reports.get(i));
+        }
         this.X = X;
         this.Y = Y;
     }

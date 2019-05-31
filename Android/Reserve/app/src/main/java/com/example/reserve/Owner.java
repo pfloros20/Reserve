@@ -13,5 +13,8 @@ public class Owner {
         this.ID = ID;
         this.Username = Username;
         this.Password = Password;
+        for (int i=0; i<Stores.size();i++) {
+            this.Stores.add(Stores.get(i));
+        }
     }
 }

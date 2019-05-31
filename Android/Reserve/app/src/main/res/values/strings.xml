@@ -6,36 +6,12 @@
     <string name="textview">TextView</string>
     <string name="user">User</string>
 
-    <string-array name="stores">
-        <item>Makina</item>
-        <item>Molos</item>
-        <item>Destro</item>
-        <item>KK</item>
-        <item>LOL</item>
-    </string-array>
-
     <string-array name="users">
         <item>George</item>
         <item>Makis</item>
         <item>Dimitris</item>
         <item>Leuteris</item>
         <item>Maria</item>
-    </string-array>
-
-    <string-array name="descriptions">
-        <item>da best</item>
-        <item>epic</item>
-        <item>not so bad</item>
-        <item>not so good</item>
-        <item>seen better</item>
-    </string-array>
-
-    <string-array name="review_number">
-        <item>23</item>
-        <item>99</item>
-        <item>12</item>
-        <item>32</item>
-        <item>5</item>
     </string-array>
 
     <string-array name="reviews">
@@ -46,27 +22,5 @@
         <item>Seen better.</item>
     </string-array>
 
-    <string-array name="stars">
-        <item>2.5</item>
-        <item>5</item>
-        <item>3</item>
-        <item>3.5</item>
-        <item>1</item>
-    </string-array>
 
-    <string-array name="address">
-        <item>Korin8ou 24</item>
-        <item>Agiou Nikolaou 0</item>
-        <item>Kolokotroni 72</item>
-        <item>Zaimi 35</item>
-        <item>Ellinou Stratioti 9</item>
-    </string-array>
-
-    <string-array name="capacity">
-        <item>33</item>
-        <item>10</item>
-        <item>30</item>
-        <item>74</item>
-        <item>62</item>
-    </string-array>
 </resources>
