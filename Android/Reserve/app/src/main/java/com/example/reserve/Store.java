@@ -64,4 +64,30 @@ public class Store {
                 this.Reservations.add(Reservations.get(i));
             }
     }
+
+    boolean isFull(){
+        return CurrentAvailability == 0;
+    }
+
+    void makeVisible(){
+        Visible = true;
+    }
+
+    void addReview(int Review_ID){
+        Reviews.add(Review_ID);
+    }
+
+    public void updateRating(){
+        int starsum = 0;
+        int total_reviews = 0;
+        for(int i=0;i<Reviews.size();i++){
+            for(int j=0;j<Data.reviews.size();j++) {
+                if (Data.reviews.get(j).ID == Reviews.get(i)){
+                    starsum += Data.reviews.get(j).Stars;
+                    total_reviews++;
+                }
+            }
+        }
+        Stars = String.valueOf(starsum/total_reviews);
+    }
 }

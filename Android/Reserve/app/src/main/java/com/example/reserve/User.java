@@ -45,4 +45,5 @@ public class User {
 
         this.Visited.add(0,Store_ID);
     }
+
 }
