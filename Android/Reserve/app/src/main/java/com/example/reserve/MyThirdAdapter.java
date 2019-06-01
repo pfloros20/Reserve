@@ -11,32 +11,24 @@ import java.util.ArrayList;
 
 public class MyThirdAdapter extends BaseAdapter {
     LayoutInflater mInflater;
-    ArrayList<Integer> table_id = new ArrayList<Integer>();;
-    ArrayList<Integer>   capacity = new ArrayList<Integer>();;
-    ArrayList<String>   availability = new ArrayList<String>();;
+    ArrayList<Table> tables = new ArrayList<Table>();
 
 
-    public MyThirdAdapter(Context a, ArrayList<Integer> table_id, ArrayList<Integer> capacity, ArrayList<String>   availability){
-        for (int i=0; i<table_id.size();i++) {
-            this.table_id.add(table_id.get(i));
-        }
-        for (int i=0; i<capacity.size();i++) {
-            this.capacity.add(capacity.get(i));
-        }
-        for (int i=0; i<availability.size();i++) {
-            this.availability.add(availability.get(i));
+    public MyThirdAdapter(Context a, ArrayList<Table> tables){
+        for (int i=0; i<tables.size();i++) {
+            this.tables.add(tables.get(i));
         }
         mInflater = (LayoutInflater)a.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return table_id.size();
+        return tables.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return table_id.get(position);
+        return tables.get(position);
     }
 
     @Override
@@ -52,9 +44,9 @@ public class MyThirdAdapter extends BaseAdapter {
         TextView table_capacity = (TextView)show.findViewById(R.id.Table_Capacity);
         TextView table_availability = (TextView)show.findViewById(R.id.Availability);
 
-        String t_id = String.valueOf(table_id.get(position));
-        String t_cap = String.valueOf(capacity.get(position));
-        String t_avail = availability.get(position);
+        String t_id = String.valueOf(tables.get(position).ID);
+        String t_cap = String.valueOf(tables.get(position).Capacity);
+        String t_avail = tables.get(position).Availability;
 
 
         tableID.setText("Table:"+t_id);

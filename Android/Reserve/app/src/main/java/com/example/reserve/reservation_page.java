@@ -19,9 +19,7 @@ public class reservation_page extends AppCompatActivity {
     private ListView mDrawerList;
     private ArrayAdapter<String> myArrayAdapter;
     ListView storelist;
-    ArrayList<Integer> tableid = new ArrayList<Integer>();
-    ArrayList<Integer> table_cap = new ArrayList<Integer>();
-    ArrayList<String> table_availability = new ArrayList<String>();
+    ArrayList<Table> tables = new ArrayList<Table>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,29 +32,11 @@ public class reservation_page extends AppCompatActivity {
         String Capacity = getIntent().getStringExtra("Capacity");
         String user = getIntent().getStringExtra("User");
 
-        Table table1 = new Table(0,0,4,"Free");
-        Table table2 = new Table(1,0,4,"Booked");
-        Table table3 = new Table(2,0,6,"Free");
-        Table table4 = new Table(3,0,4,"Free");
-        Table table5 = new Table(4,0,2,"Taken");
-
-        tableid.add(table1.ID);
-        tableid.add(table2.ID);
-        tableid.add(table3.ID);
-        tableid.add(table4.ID);
-        tableid.add(table5.ID);
-        table_cap.add(table1.Capacity);
-        table_cap.add(table2.Capacity);
-        table_cap.add(table3.Capacity);
-        table_cap.add(table4.Capacity);
-        table_cap.add(table5.Capacity);
-        table_availability.add(table1.Availability);
-        table_availability.add(table2.Availability);
-        table_availability.add(table3.Availability);
-        table_availability.add(table4.Availability);
-        table_availability.add(table5.Availability);
-
-
+        tables.add(new Table(0,0,4,"Free"));
+        tables.add(new Table(1,0,4,"Booked"));
+        tables.add(new Table(2,0,6,"Free"));
+        tables.add(new Table(3,0,4,"Free"));
+        tables.add(new Table(4,0,2,"Taken"));
 
         TextView StoreName = (TextView)findViewById(R.id.Storename);
         TextView StoreCapacity = (TextView)findViewById(R.id.Capacity);
@@ -69,7 +49,7 @@ public class reservation_page extends AppCompatActivity {
 
         addOptions(user, mDrawerList, myArrayAdapter);
 
-        MyThirdAdapter mythirdAdapter = new MyThirdAdapter(this, tableid, table_cap, table_availability);
+        MyThirdAdapter mythirdAdapter = new MyThirdAdapter(this, tables);
 
         storelist.setAdapter(mythirdAdapter);
 

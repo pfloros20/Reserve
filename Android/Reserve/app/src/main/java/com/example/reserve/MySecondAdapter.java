@@ -7,27 +7,32 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MySecondAdapter extends BaseAdapter {
 
     LayoutInflater mInflater;
-    String[]   user_name;
-    String[]   review;
+    ArrayList<User> users;
+    ArrayList<Review> reviews = new ArrayList<Review>();
 
 
-    public MySecondAdapter(Context a, String[] user_name, String[] review){
-        this.user_name = user_name;
-        this.review = review;
+    public MySecondAdapter(Context a, ArrayList<User> users, ArrayList<Review> reviews, int Store_ID){
+        this.users = users;
+        for(int i=0;i<reviews.size();i++) {
+            if(reviews.get(i).Store_ID == Store_ID)
+                this.reviews.add(reviews.get(i));
+        }
         mInflater = (LayoutInflater)a.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return user_name.length;
+        return reviews.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return user_name[position];
+        return users.get(position);
     }
 
     @Override
@@ -42,9 +47,8 @@ public class MySecondAdapter extends BaseAdapter {
         TextView User_Name = (TextView)show.findViewById(R.id.CustomerName);
         TextView Review = (TextView)show.findViewById(R.id.UserReview);
 
-
-        String name = user_name[position];
-        String user_review = review[position];
+        String name = users.get(reviews.get(position).SubmittedBy).Username;
+        String user_review = reviews.get(position).Description;
 
 
         User_Name.setText(name);

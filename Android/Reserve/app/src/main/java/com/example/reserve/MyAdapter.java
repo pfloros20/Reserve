@@ -12,23 +12,11 @@ import java.util.ArrayList;
 public class MyAdapter extends BaseAdapter {
 
     LayoutInflater mInflater;
-    ArrayList<String> stores = new ArrayList<String>();
-    ArrayList<String> descriptions = new ArrayList<String>();
-    ArrayList<String> review_number = new ArrayList<String>();
-    ArrayList<String> stars = new ArrayList<String>();
+    ArrayList<Store> stores = new ArrayList<Store>();
 
-    public MyAdapter(Context a, ArrayList<String> stores, ArrayList<String> descriptions, ArrayList<String> review_number, ArrayList<String> stars){
+    public MyAdapter(Context a, ArrayList<Store> stores){
         for (int i=0; i<stores.size();i++) {
             this.stores.add(stores.get(i));
-        }
-        for (int i=0; i<descriptions.size();i++) {
-            this.descriptions.add(descriptions.get(i));
-        }
-        for (int i=0; i<review_number.size();i++) {
-            this.review_number.add(review_number.get(i));
-        }
-        for (int i=0; i<stars.size();i++) {
-            this.stars.add(stars.get(i));
         }
         mInflater = (LayoutInflater)a.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -57,10 +45,10 @@ public class MyAdapter extends BaseAdapter {
         TextView Review_number = (TextView)show.findViewById(R.id.Review_number);
         TextView Stars = (TextView) show.findViewById(R.id.Stars);
 
-        String name = stores.get(position);
-        String description = descriptions.get(position);
-        String review = review_number.get(position);
-        String star = stars.get(position);
+        String name = stores.get(position).Name;
+        String description = stores.get(position).Description;
+        String review = String.valueOf(stores.get(position).Reviews.size());
+        String star = stores.get(position).Stars;
 
         Store_Name.setText(name);
         Description.setText(description);
