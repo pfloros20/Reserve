@@ -13,7 +13,7 @@ public class Table {
         this.Availability = Availability;
     }
 
-    public void updateAvailability(String newAvailability){
-        this.Availability = newAvailability;
+    public void updateAvailability(String Availability){
+        this.Availability = Availability;
     }
 }
