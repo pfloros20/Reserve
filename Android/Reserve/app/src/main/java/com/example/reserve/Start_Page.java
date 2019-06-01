@@ -22,6 +22,7 @@ public class Start_Page extends AppCompatActivity {
     ArrayList<String> address = new ArrayList<String>();
     ArrayList<Float> axis_x = new ArrayList<Float>();
     ArrayList<Float> axis_y = new ArrayList<Float>();
+    ArrayList<ArrayList> tables = new ArrayList<ArrayList>();
 
     private ListView mDrawerList;
     private ArrayAdapter<String> myArrayAdapter;
@@ -64,7 +65,7 @@ public class Start_Page extends AppCompatActivity {
             store2_reservations.add(i);
         }
         ArrayList<Integer> store3_tables = new ArrayList<Integer>();
-        for (int i=8; i<16;i++) {
+        for (int i=15; i<28;i++) {
             store3_tables.add(i);
         }
         ArrayList<String> store3_events = new ArrayList<String>();
@@ -113,6 +114,9 @@ public class Start_Page extends AppCompatActivity {
             axis_y.add(store1.Y);
             axis_y.add(store2.Y);
             axis_y.add(store3.Y);
+            tables.add(store1_tables);
+            tables.add(store2_tables);
+            tables.add(store3_tables);
 
             MyAdapter myAdapter = new MyAdapter(this, stores, descriptions, review_number, stars);
 
@@ -128,6 +132,7 @@ public class Start_Page extends AppCompatActivity {
                     store_page.putExtra("StoreCapacity", capacity.get(position));
                     store_page.putExtra("X", axis_x.get(position));
                     store_page.putExtra("Y", axis_y.get(position));
+                    store_page.putExtra("Tables", tables.get(position));
                     store_page.putExtra("User", user.Username);
                     startActivity(store_page);
                 }
@@ -147,6 +152,8 @@ public class Start_Page extends AppCompatActivity {
                 }
             }
         });
+
+
 
     }
     private void addOptions(String user, ListView mDrawerList, ArrayAdapter<String> myArrayAdapter){

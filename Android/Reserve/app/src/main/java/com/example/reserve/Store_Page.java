@@ -17,6 +17,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class Store_Page extends AppCompatActivity {
 
     private ListView mDrawerList;
@@ -35,7 +37,7 @@ public class Store_Page extends AppCompatActivity {
         Resources res = getResources();
         users = res.getStringArray(R.array.users);
         reviews = res.getStringArray(R.array.reviews);
-        String user = getIntent().getExtras().getString("User");
+        final String user = getIntent().getExtras().getString("User");
 
 
         addOptions(user, mDrawerList, myArrayAdapter);
@@ -57,7 +59,7 @@ public class Store_Page extends AppCompatActivity {
         TextView Store_name = (TextView)findViewById(R.id.StoreName);
         RatingBar rating = (RatingBar)findViewById(R.id.Rating);
         TextView Store_address = (TextView)findViewById(R.id.StoreAddress);
-        TextView Store_capacity = (TextView)findViewById(R.id.Capacity);
+        final TextView Store_capacity = (TextView)findViewById(R.id.Capacity);
         final ImageButton favouriteOFF = (ImageButton)findViewById(R.id.favouriteOFF);
         final ImageButton favouriteON = (ImageButton)findViewById(R.id.favouriteON);
         ImageView Store_map = (ImageView)findViewById(R.id.StoreMap);
@@ -67,10 +69,11 @@ public class Store_Page extends AppCompatActivity {
         Button shedule_btn = (Button)findViewById(R.id.SheduleBtn);
 
         Store_map.setImageResource(R.drawable.store);
-        String Store_Name = getIntent().getStringExtra("StoreName");
+        final String Store_Name = getIntent().getStringExtra("StoreName");
         float stars = Float.parseFloat(getIntent().getStringExtra("StoreStars"));
         String Store_Address = getIntent().getStringExtra("StoreAddress");
-        String Store_Capacity = getIntent().getStringExtra("StoreCapacity");
+        final String Store_Capacity = getIntent().getStringExtra("StoreCapacity");
+        final ArrayList<Integer> Store_tables = getIntent().getIntegerArrayListExtra("Tables");
 
         MySecondAdapter mySAdapter = new MySecondAdapter(this, users, reviews);
         storelist.setAdapter(mySAdapter);
@@ -122,7 +125,12 @@ public class Store_Page extends AppCompatActivity {
         reservation_btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Toast.makeText(Store_Page.this, "Not implemented yet!", Toast.LENGTH_SHORT).show();
+                Intent change = new Intent(getApplicationContext(), reservation_page.class);
+                change.putIntegerArrayListExtra("Store_Tables",Store_tables);
+                change.putExtra("User", user);
+                change.putExtra("Store_Name", Store_Name);
+                change.putExtra("Capacity", Store_Capacity);
+                startActivity(change);
             }
         });
 
