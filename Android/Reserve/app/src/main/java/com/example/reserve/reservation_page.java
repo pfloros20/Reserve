@@ -30,7 +30,11 @@ public class reservation_page extends AppCompatActivity {
 
         String Store_Name = getIntent().getStringExtra("Store_Name");
         String Capacity = getIntent().getStringExtra("Capacity");
-        String user = getIntent().getStringExtra("User");
+        final User user =  new User(getIntent().getExtras().getInt("User_ID"),
+                getIntent().getExtras().getString("Username"), " ",
+                getIntent().getIntegerArrayListExtra("User_Review"),
+                getIntent().getIntegerArrayListExtra("User_Visited"),
+                getIntent().getIntegerArrayListExtra("User_Reports"), 0, 0);
 
         tables.add(new Table(0,0,4,"Free"));
         tables.add(new Table(1,0,4,"Booked"));
@@ -47,7 +51,7 @@ public class reservation_page extends AppCompatActivity {
         mDrawerList = (ListView)findViewById(R.id.navList);
         storelist = (ListView)findViewById(R.id.table_list);
 
-        addOptions(user, mDrawerList, myArrayAdapter);
+        addOptions(user.Username, mDrawerList, myArrayAdapter);
 
         MyThirdAdapter mythirdAdapter = new MyThirdAdapter(this, tables);
 
@@ -84,6 +88,11 @@ public class reservation_page extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (id == 1) {
                     Intent change = new Intent(getApplicationContext(), Start_Page.class);
+                    change.putExtra("User_ID", user.ID);
+                    change.putExtra("Username", user.Username);
+                    change.putExtra("User_Review", user.Reviews);
+                    change.putExtra("User_Reports", user.Reports);
+                    change.putExtra("User_Visited", user.Visited);
                     startActivity(change);
                 }else if(id == 6){
                     Intent change = new Intent(getApplicationContext(), MainActivity.class);
