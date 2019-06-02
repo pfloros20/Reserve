@@ -1,7 +1,6 @@
 package com.example.reserve;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -32,7 +31,6 @@ public class Store_Page extends AppCompatActivity {
         final boolean favourite;
         mDrawerList = (ListView)findViewById(R.id.navList);
 
-        Resources res = getResources();
         final User user =  new User(getIntent().getExtras().getInt("User_ID"),
                 getIntent().getExtras().getString("Username"), " ",
                 getIntent().getIntegerArrayListExtra("User_Review"),
@@ -140,6 +138,7 @@ public class Store_Page extends AppCompatActivity {
                 change.putExtra("User_Visited", user.Visited);
                 change.putExtra("Store_Name", Store_Name);
                 change.putExtra("Capacity", Store_Capacity);
+                change.putExtra("Store_ID", Store_ID);
                 startActivity(change);
             }
         });
