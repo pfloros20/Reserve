@@ -80,12 +80,14 @@ public class reservation_page extends AppCompatActivity {
         resBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                res_table.updateAvailability("BOOKED");
-                tables.remove(location);
-                tables.add(location, res_table);
+                if(res_table.Availability != null) {
+                    res_table.updateAvailability("BOOKED");
+                    tables.remove(location);
+                    tables.add(location, res_table);
 
-                mythirdAdapter.tables = tables;
-                storelist.setAdapter(mythirdAdapter);
+                    mythirdAdapter.tables = tables;
+                    storelist.setAdapter(mythirdAdapter);
+                }
 
             }
         });
