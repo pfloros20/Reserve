@@ -18,8 +18,10 @@ public class reservation_page extends AppCompatActivity {
 
     private ListView mDrawerList;
     private ArrayAdapter<String> myArrayAdapter;
+    public Table res_table = new Table(0,0,4,null);
     ListView storelist;
     ArrayList<Table> tables = new ArrayList<Table>();
+    public int location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +31,14 @@ public class reservation_page extends AppCompatActivity {
         final ArrayList<Integer> Store_tables = getIntent().getIntegerArrayListExtra("Store_Tables");
 
         String Store_Name = getIntent().getStringExtra("Store_Name");
+        final int Store_ID = getIntent().getIntExtra("Store_ID", -1);
         String Capacity = getIntent().getStringExtra("Capacity");
-        String user = getIntent().getStringExtra("User");
+        final User user =  new User(getIntent().getExtras().getInt("User_ID"),
+                getIntent().getExtras().getString("Username"), " ",
+                getIntent().getIntegerArrayListExtra("User_Review"),
+                getIntent().getIntegerArrayListExtra("User_Visited"),
+                getIntent().getIntegerArrayListExtra("User_Reports"), 0, 0);
 
-        tables.add(new Table(0,0,4,"Free"));
-        tables.add(new Table(1,0,4,"Booked"));
-        tables.add(new Table(2,0,6,"Free"));
-        tables.add(new Table(3,0,4,"Free"));
-        tables.add(new Table(4,0,2,"Taken"));
 
         TextView StoreName = (TextView)findViewById(R.id.Storename);
         TextView StoreCapacity = (TextView)findViewById(R.id.Capacity);
@@ -47,9 +49,14 @@ public class reservation_page extends AppCompatActivity {
         mDrawerList = (ListView)findViewById(R.id.navList);
         storelist = (ListView)findViewById(R.id.table_list);
 
-        addOptions(user, mDrawerList, myArrayAdapter);
+        addOptions(user.Username, mDrawerList, myArrayAdapter);
 
-        MyThirdAdapter mythirdAdapter = new MyThirdAdapter(this, tables);
+        for (int i=0; i<Data.tables.size();i++) {
+            if(Data.tables.get(i).Store == Store_ID)
+                tables.add(Data.tables.get(i));
+        }
+
+        final MyThirdAdapter mythirdAdapter = new MyThirdAdapter(this, tables, Store_ID);
 
         storelist.setAdapter(mythirdAdapter);
 
@@ -61,21 +68,34 @@ public class reservation_page extends AppCompatActivity {
         storelist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(reservation_page.this, "Saved current Table.", Toast.LENGTH_SHORT).show();
+                if(("FREE".equals(tables.get(position).Availability)) && (Store_ID == tables.get(position).Store)){
+                    res_table = tables.get(position);
+                    location = position;
+                    Toast.makeText(reservation_page.this, "Saved selected table!", Toast.LENGTH_SHORT).show();
+                }else
+                    Toast.makeText(reservation_page.this, "You can't reserve this table!", Toast.LENGTH_SHORT).show();
             }
         });
 
         resBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Toast.makeText(reservation_page.this, "Not implemented yet!", Toast.LENGTH_SHORT).show();
+                if(res_table.Availability != null) {
+                    res_table.updateAvailability("BOOKED");
+                    tables.remove(location);
+                    tables.add(location, res_table);
+
+                    mythirdAdapter.tables = tables;
+                    storelist.setAdapter(mythirdAdapter);
+                }
+
             }
         });
 
         backBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Toast.makeText(reservation_page.this, "Not implemented yet!", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
 
@@ -84,6 +104,11 @@ public class reservation_page extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (id == 1) {
                     Intent change = new Intent(getApplicationContext(), Start_Page.class);
+                    change.putExtra("User_ID", user.ID);
+                    change.putExtra("Username", user.Username);
+                    change.putExtra("User_Review", user.Reviews);
+                    change.putExtra("User_Reports", user.Reports);
+                    change.putExtra("User_Visited", user.Visited);
                     startActivity(change);
                 }else if(id == 6){
                     Intent change = new Intent(getApplicationContext(), MainActivity.class);

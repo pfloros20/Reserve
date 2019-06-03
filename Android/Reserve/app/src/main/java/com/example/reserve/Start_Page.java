@@ -52,7 +52,11 @@ public class Start_Page extends AppCompatActivity {
                     store_page.putExtra("X", Data.stores.get(position).X);
                     store_page.putExtra("Y", Data.stores.get(position).Y);
                     store_page.putExtra("Tables", Data.stores.get(position).Tables);
-                    store_page.putExtra("User", user.Username);
+                    store_page.putExtra("User_ID", user.ID);
+                    store_page.putExtra("Username", user.Username);
+                    store_page.putExtra("User_Review", user.Reviews);
+                    store_page.putExtra("User_Reports", user.Reports);
+                    store_page.putExtra("User_Visited", user.Visited);
                     startActivity(store_page);
                 }
             });
@@ -74,7 +78,11 @@ public class Start_Page extends AppCompatActivity {
 
 
 
+
     }
+    @Override
+    public void onBackPressed() {}
+
     private void addOptions(String user, ListView mDrawerList, ArrayAdapter<String> myArrayAdapter){
         String[] user_options = {user, "Start Page", "Reservations", "Favourites", "Events", "Reviews", "Log Out", "Communication"};
         myArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, user_options);

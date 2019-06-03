@@ -14,9 +14,10 @@ public class MyThirdAdapter extends BaseAdapter {
     ArrayList<Table> tables = new ArrayList<Table>();
 
 
-    public MyThirdAdapter(Context a, ArrayList<Table> tables){
+    public MyThirdAdapter(Context a, ArrayList<Table> tables,  int Store_ID){
         for (int i=0; i<tables.size();i++) {
-            this.tables.add(tables.get(i));
+            if(tables.get(i).Store == Store_ID)
+                this.tables.add(tables.get(i));
         }
         mInflater = (LayoutInflater)a.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }

@@ -1,7 +1,6 @@
 package com.example.reserve;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -32,11 +31,14 @@ public class Store_Page extends AppCompatActivity {
         final boolean favourite;
         mDrawerList = (ListView)findViewById(R.id.navList);
 
-        Resources res = getResources();
-        final String user = getIntent().getExtras().getString("User");
+        final User user =  new User(getIntent().getExtras().getInt("User_ID"),
+                getIntent().getExtras().getString("Username"), " ",
+                getIntent().getIntegerArrayListExtra("User_Review"),
+                getIntent().getIntegerArrayListExtra("User_Visited"),
+                getIntent().getIntegerArrayListExtra("User_Reports"), 0, 0);
 
 
-        addOptions(user, mDrawerList, myArrayAdapter);
+        addOptions(user.Username, mDrawerList, myArrayAdapter);
 
         LinearLayout gallery = (LinearLayout)findViewById(R.id.gallery);
 
@@ -109,6 +111,11 @@ public class Store_Page extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (id == 1) {
                     Intent change = new Intent(getApplicationContext(), Start_Page.class);
+                    change.putExtra("User_ID", user.ID);
+                    change.putExtra("Username", user.Username);
+                    change.putExtra("User_Review", user.Reviews);
+                    change.putExtra("User_Reports", user.Reports);
+                    change.putExtra("User_Visited", user.Visited);
                     startActivity(change);
                 }else if(id == 6){
                     Intent change = new Intent(getApplicationContext(), MainActivity.class);
@@ -124,9 +131,14 @@ public class Store_Page extends AppCompatActivity {
             public void onClick(View view) {
                 Intent change = new Intent(getApplicationContext(), reservation_page.class);
                 change.putIntegerArrayListExtra("Store_Tables",Store_tables);
-                change.putExtra("User", user);
+                change.putExtra("User_ID", user.ID);
+                change.putExtra("Username", user.Username);
+                change.putExtra("User_Review", user.Reviews);
+                change.putExtra("User_Reports", user.Reports);
+                change.putExtra("User_Visited", user.Visited);
                 change.putExtra("Store_Name", Store_Name);
                 change.putExtra("Capacity", Store_Capacity);
+                change.putExtra("Store_ID", Store_ID);
                 startActivity(change);
             }
         });
