@@ -6,7 +6,7 @@ public class Store {
     public int ID;
     public String Name;
     public int Owner;
-    public String Stars = "3";
+    public float Stars;
     public int Capacity;
     public int CurrentAvailability;
     public String Description;
@@ -19,12 +19,13 @@ public class Store {
     ArrayList<Integer> Reviews = new ArrayList<Integer>();
     ArrayList<Integer> Reservations = new ArrayList<Integer>();
 
-    public Store(int ID, String Name, int Owner,
+    public Store(int ID, String Name, int Owner, float Stars,
                  int Capacity, int CurrentAvailability, String Description,
                  boolean Visible, String Type){
         this.ID = ID;
         this.Name = Name;
         this.Owner = Owner;
+        this.Stars = Stars;
         this.Capacity = Capacity;
         this.CurrentAvailability = CurrentAvailability;
         this.Description = Description;
@@ -32,7 +33,7 @@ public class Store {
         this.Type = Type;
     }
 
-    public Store(int ID, String Name, int Owner, String Stars,
+    public Store(int ID, String Name, int Owner, float Stars,
                  int Capacity, int CurrentAvailability, String Description,
                  boolean Visible, String Type, float X, float Y, ArrayList<Integer> Tables,
                  ArrayList<String> Events, ArrayList<Integer> Reviews, ArrayList<Integer> Reservations){
@@ -88,6 +89,6 @@ public class Store {
                 }
             }
         }
-        Stars = String.valueOf(starsum/total_reviews);
+        Stars = starsum/total_reviews;
     }
 }

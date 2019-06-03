@@ -69,7 +69,7 @@ public class Store_Page extends AppCompatActivity {
         Store_map.setImageResource(R.drawable.store);
         final String Store_Name = getIntent().getStringExtra("StoreName");
         final int Store_ID = getIntent().getIntExtra("Store_ID", -1);
-        float stars = Float.parseFloat(getIntent().getStringExtra("StoreStars"));
+        float stars = getIntent().getFloatExtra("StoreStars",0);
         String Store_Address = getIntent().getStringExtra("StoreAddress");
         final String Store_Capacity = getIntent().getStringExtra("StoreCapacity");
         final ArrayList<Integer> Store_tables = getIntent().getIntegerArrayListExtra("Tables");

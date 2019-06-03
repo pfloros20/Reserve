@@ -26,12 +26,12 @@ public final class Data {
         new User(4,"Aristidis","ll21")));
 
     static ArrayList<Store> stores = new ArrayList<Store>(Arrays.asList(
-        new Store(0,"STORE0",1,42,10,"This is the best store in Patras",true,"RESTAURANT"),
-        new Store(1,"STORE1",2,70,30,"This is the greatest store in Patras",true,"RESTAURANT"),
-        new Store(2,"STORE2",3,55,24,"This is the most popular store in Patras",true,"COFFEE SHOP"),
-        new Store(3,"STORE3",4,50,30,"This is one of the best stores in Patras",true,"PIZZA SHOP"),
-        new Store(4,"STORE4",4,50,30,"This is one of the great stores in Patras",true,"RESTAURANT"),
-        new Store(5,"STORE5",1,20,8,"This is the second best store in Patras", false,"RESTAURANT")));
+        new Store(0,"STORE0",1,3,42,10,"This is the best store in Patras",true,"RESTAURANT"),
+        new Store(1,"STORE1",2,4,70,30,"This is the greatest store in Patras",true,"RESTAURANT"),
+        new Store(2,"STORE2",3,3,55,24,"This is the most popular store in Patras",true,"COFFEE SHOP"),
+        new Store(3,"STORE3",4,5,50,30,"This is one of the best stores in Patras",true,"PIZZA SHOP"),
+        new Store(4,"STORE4",4,2,50,30,"This is one of the great stores in Patras",true,"RESTAURANT"),
+        new Store(5,"STORE5",1,2.5f,20,8,"This is the second best store in Patras", false,"RESTAURANT")));
 
     static ArrayList<Table> tables = new ArrayList<Table>(Arrays.asList(
         new Table(0,1,4,"FREE"),

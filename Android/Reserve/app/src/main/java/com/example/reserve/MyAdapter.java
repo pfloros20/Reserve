@@ -48,7 +48,7 @@ public class MyAdapter extends BaseAdapter {
         String name = stores.get(position).Name;
         String description = stores.get(position).Description;
         String review = String.valueOf(stores.get(position).Reviews.size());
-        String star = stores.get(position).Stars;
+        String star = String.valueOf(stores.get(position).Stars);
 
         Store_Name.setText(name);
         Description.setText(description);

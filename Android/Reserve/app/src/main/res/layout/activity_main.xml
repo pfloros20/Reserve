@@ -95,7 +95,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:background="?attr/actionBarItemBackground"
-        android:text="Did you froget your pass?"
+        android:text="Did you forget your password?"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="@android:color/holo_blue_dark"
         app:layout_constraintBottom_toBottomOf="parent"
